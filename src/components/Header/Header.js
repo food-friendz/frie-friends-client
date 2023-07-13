@@ -1,4 +1,4 @@
-import './Header.css';
+import "./Header.css";
 
 export default function Header() {
   return (
@@ -13,29 +13,30 @@ export default function Header() {
           <div className="absolute inset-0" aria-hidden="true" />
         </div>
         <div className="relative text-center max-w-7xl mx-auto py-24 px-4 flex flex-col items-center sm:py-32 sm:px-6 lg:px-8">
-          <h1 className="header text-4xl font-extrabold tracking-tight text-stone-50 sm:text-5xl lg:text-6xl">Foodie Friends</h1>
+          <h1 className="header text-4xl font-extrabold tracking-tight text-stone-50 sm:text-5xl lg:text-6xl">
+            Foodie Friends
+          </h1>
           <p className="about-blurb mt-6 text-xl font-medium xl:text-2xl text-stone-50 max-w-3xl">
-            Welcome 
+            Welcome
           </p>
         </div>
+        <h1>Foodie Friends</h1>
       </div>
     </>
-  )
+  );
 }
 
-
-// 
-// 
+//
+//
 
 // BELOW IS PREV CODE
 // Link buttons can be leveraged once the pages for event, sign up, login, etc are mades
 
-// 
-// 
-// 
+//
+//
+//
 
 // import React from 'react';
-
 
 // const Header = () => {
 //     const logout = (event) => {
