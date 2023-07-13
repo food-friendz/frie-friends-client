@@ -21,3 +21,4 @@ ReactDOM.render(
 );
 
 reportWebVitals(console.log); // Optional: log performance results to the console
+
