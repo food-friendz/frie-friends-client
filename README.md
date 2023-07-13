@@ -7,7 +7,6 @@
 
  The deployed site can be found [here] (INSERT DEPLOYED APP).
 
-
   &nbsp;
   # Table of Contents:
   * [Installation](#installation)
