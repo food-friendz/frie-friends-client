@@ -1,4 +1,5 @@
 import React from 'react';
+// import { Routes, Route } from 'react-router-dom';
 import { 
   ApolloProvider,
   ApolloClient, 
@@ -7,8 +8,8 @@ import {
   // useQuery 
 } from '@apollo/client';
 import Header from './components/Header/Header';
-import loginForm from './components/pages/loginForm';
-import signUpForm from './components/pages/signUpForm';
+import signUpForm from './pages/signUpForm';
+import loginForm from './pages/loginForm';
 
 const client = new ApolloClient({
   uri: 'https://foodie-friends-server-b0943e90cb47.herokuapp.com/', // Replace with your server's URL
@@ -20,7 +21,14 @@ function App() {
     <ApolloProvider client={client}>
       <Header />
       <div className="App">
-      <h1>Food Friendz</h1>
+      <h1>Foodie Friends</h1>
+      <signUpForm />
+
+      {/* TRIED TO ADD ROUTES BUT GOT ERRORED OUT */}
+      
+      {/* <Routes>
+      <Route path='/signUpForm' element={<signUpForm />} />
+      </Routes> */}
       {/* Add your components and routes here */}
     </div>
     </ApolloProvider>
