@@ -1,8 +1,20 @@
-import { Link } from "react-router-dom";
-import { AppBar, Button } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
+import { AppBar, Button, Stack, Box } from "@mui/material";
 import "./Header.css";
+import { WithAuth, WithoutAuth } from "../WithAuths";
+import { useAuth } from "../../utils/contex";
 
 function Header() {
+  const auth = useAuth();
+  const navigate = useNavigate();
+  
+  const doSignout = (/** @type {Event} */ event) => {
+    event.preventDefault()
+    auth.logout(() => {
+      navigate("/login");
+    });
+  };
+
   // return (
   //   <>
   //     <div className="relative bg-teal-700">
@@ -29,13 +41,18 @@ function Header() {
   return (
     <>
       <AppBar>
-        <div className="nav-container flex">
-          <nav className="bg-gray-100 backdrop-filter backdrop-blur-lg">
-            <a href="/" className="flex items-center justify-center">
+        <Stack className="nav-container" direction="row">
+          <Button>
+            <Link>
               <img src="logo.png" alt="Logo" className="w-16 h-16 mr-4" />
               <span className="text-gray-800 text-xl">My Website</span>
-            </a>
-            <div className="flex items-center justify-end">
+            </Link>
+          </Button>
+
+          <Box m="auto"></Box>
+
+          <div className="flex items-center justify-end">
+            <WithoutAuth>
               <Button>
                 <Link to="/login" className="text-gray-800 text-sm mr-4">
                   Log in
@@ -46,9 +63,16 @@ function Header() {
                   sign up
                 </Link>
               </Button>
-            </div>
-          </nav>
-        </div>
+            </WithoutAuth>
+            <WithAuth>
+              <Button>
+                <Link onClick={doSignout} className="text-gray-800 text-sm">
+                  sign out
+                </Link>
+              </Button>
+            </WithAuth>
+          </div>
+        </Stack>
       </AppBar>
     </>
   );

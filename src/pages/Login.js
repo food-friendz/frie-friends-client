@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDoMutation } from "../hooks/gqlHooks";
 import { gql } from "@apollo/client";
+import { useAuth } from "../utils/contex";
 const { useNavigate } = require("react-router-dom");
 
 const loginQuery = gql`
@@ -15,6 +16,7 @@ const loginQuery = gql`
 `;
 
 function Login(props) {
+  const auth = useAuth();
   const [creds, setCreds] = useState({ email: "", password: "" });
   const [login, { error, loading, data }] = useDoMutation(loginQuery, creds);
   const navigate = useNavigate();
@@ -34,14 +36,12 @@ function Login(props) {
     login(creds)
       .then((response) => {
         console.log(response);
-        localStorage.setItem("token", response.data.login.token);
+        auth.setAuth(response.login.data);
         navigate("/");
       })
       .catch((err) => {
         console.log(err);
       });
-
- 
   };
 
   return (

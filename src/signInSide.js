@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDoMutation } from "./hooks/gqlHooks";
 import { useNavigate } from "react-router-dom";
 import { gql } from "@apollo/client";
+import { useAuth } from "./utils/contex";
 
 function Copyright(props) {
   return (
@@ -52,6 +53,7 @@ const defaultCreds = {
 export default function SignInSide() {
   const [creds, setCreds] = React.useState(defaultCreds ?? { email: "", password: "" });
   const [login, { error, loading, data }] = useDoMutation(loginQuery, creds);
+  const auth = useAuth();
   const navigate = useNavigate();
 
   const onField = (/** @type {keyof typeof creds}*/ field, /** @type {import("react").ChangeEvent} */ event) => {
@@ -69,7 +71,7 @@ export default function SignInSide() {
     login(creds)
       .then((response) => {
         console.log(response);
-        localStorage.setItem("token", response.data.login.token);
+        auth.setAuth( response.data.login);
         navigate("/");
       })
       .catch((err) => {
