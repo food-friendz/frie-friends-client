@@ -47,24 +47,23 @@ function App() {
   useEffect(() => {
     const token = auth.intializeToken();
     if (token) {
-      // getUser();
+      console.log("app set token", token);
+      auth.setToken(token);
     }
   }, []);
 
   return (
     <div className="App">
-      <AppContextProvider>
-        <BrowserRouter>
-          <Header />
+      <BrowserRouter>
+        <Header />
 
-          <Routes>
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<SignInSide />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/" element={<Profile />} />
-          </Routes>
-        </BrowserRouter>
-      </AppContextProvider>
+        <Routes>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<SignInSide />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Profile />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
