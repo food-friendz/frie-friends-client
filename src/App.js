@@ -1,13 +1,13 @@
+import { gql } from "@apollo/client";
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./components/Header/Header";
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+import Signup from "./pages/Signup";
+import SignInSide from "./signInSide.js";
 
-import React from 'react';
-import { ApolloProvider, ApolloClient, InMemoryCache, gql, useQuery } from '@apollo/client';
-import SignInSide from './signInSide.js'; 
 
-
-const client = new ApolloClient({
-  uri: 'http://localhost:3001/graphql', // Replace with your server's URL
-  cache: new InMemoryCache(),
-});
 
 const GET_EVENTS = gql`
   query GetEvents {
@@ -38,13 +38,6 @@ const GET_USERS = gql`
     }
   }
 `;
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "./components/Header/Header";
-import Profile from "./pages/Profile";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
 
 function App() {
   return (
@@ -54,7 +47,7 @@ function App() {
 
         <Routes>
           <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<SignInSide />} />
           <Route path="/" element={<Home />} />
           <Route path="/" element={<Profile />} />
         </Routes>
@@ -63,15 +56,6 @@ function App() {
   );
 }
 
-function AppWrapper() {
-  return (
-    <ApolloProvider client={client}>
-      <SignInSide /> {/* Render SignInSide here */}
-      <App />
-    </ApolloProvider>
-  );
-}
 
 
-export default AppWrapper;
-
+export default App;

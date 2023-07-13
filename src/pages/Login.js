@@ -25,7 +25,7 @@ function Login(props) {
     setCreds((oldCreds) => ({ ...oldCreds, [field]: value }));
   };
 
-  const doLogin = (/** @type {SubmitEvent} */ event) => {
+  const handleLogin = (/** @type {SubmitEvent} */ event) => {
     event.preventDefault(); // stop the form from refreshing the page
 
     //take credentials
@@ -41,14 +41,12 @@ function Login(props) {
         console.log(err);
       });
 
-    //if success full, send to home page
-
-    //else show error msg
+ 
   };
 
   return (
     <div>
-      <form className="bg-white shadow-md rounded px-8 flex-col pt-6 pb-8 mb-4" onSubmit={doLogin}>
+      <form className="bg-white shadow-md rounded px-8 flex-col pt-6 pb-8 mb-4" onSubmit={handleLogin}>
         <h2 className="text-center text-lg font-semibold mb-4">Log in</h2>
         <input
           type="email"
