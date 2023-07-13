@@ -1,4 +1,9 @@
 // add mutations here
+
+// 
+// 
+// TURN QUERIES INTO MUTATIONS
+// 
 import { gql } from '@apollo/client';
 
 export const GET_RESTAURANTS = gql`
@@ -60,3 +65,29 @@ export const GET_USER = gql`
     }
   }
 `;
+
+export const ADD_USER = gql`
+  mutation addUser($email: String!, $password: String!) {
+    addUser(email: $email, password: $password) {
+      token
+      user {
+        _id
+        firstName
+        lastName
+      }
+    }
+  }
+`;
+
+export const LOGIN_USER = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      user {
+        _id
+        email
+      }
+    }
+  }
+`;
+
