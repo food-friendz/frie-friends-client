@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { AppContextProvider } from "./utils/contex";
 
 const client = new ApolloClient({
   // uri: 'http://localhost:3001/graphql', // Replace with your GraphQL endpoint URL
@@ -12,11 +13,13 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </ApolloProvider>,
+  <AppContextProvider>
+    <ApolloProvider client={client}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </ApolloProvider>
+  </AppContextProvider>,
   document.getElementById("root")
 );
 

@@ -1,5 +1,6 @@
 import { createContext, useContext, useReducer } from "react";
 
+/** @type {{user:{email: string|undefined,name:string|undefined},token:string|undefined}} */
 const baseContext = {
   user: { email: undefined, name: undefined },
   token: undefined,
@@ -58,14 +59,20 @@ export function useAuth() {
 
   const intializeToken = () => {
     const token = localStorage.getItem("token");
-    if (token) {
+    const tokenFound = token !== null;
+    console.log("intializeToken:", { token, tokenFound });
+    if (tokenFound) {
+      console.log("setting token on initialize", { token });
       setToken(token);
     }
     return token;
   };
 
+  const loggedIn = token !== undefined;
+
   const isLoggedIn = () => {
-    return token !== undefined;
+    console.log("isloggedin: updated", { loggedin: loggedIn, token });
+    return loggedIn;
   };
 
   return { user, token, setToken, setUser, setAuth, logout, isLoggedIn, intializeToken };
