@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { AppBar } from "@mui/material";
 import "./Header.css";
 
 function Header() {
@@ -27,22 +28,28 @@ function Header() {
   // );
   return (
     <>
-      <div className="nav-container flex">
-        <nav className="bg-gray-100 backdrop-filter backdrop-blur-lg">
-          <a href="/" className="flex items-center justify-center">
-            <img src="logo.png" alt="Logo" className="w-16 h-16 mr-4" />
-            <span className="text-gray-800 text-xl">My Website</span>
-          </a>
-          <div className="flex items-center justify-end">
-            <Link to="/login" className="text-gray-800 text-sm mr-4">
-              Log in
-            </Link>
-            <Link to="/signup" className="text-gray-800 text-sm">
-              sign up
-            </Link>
-          </div>
-        </nav>
-      </div>
+      <AppBar>
+        <div className="nav-container flex">
+          <nav className="bg-gray-100 backdrop-filter backdrop-blur-lg">
+            <a href="/" className="flex items-center justify-center">
+              <img src="logo.png" alt="Logo" className="w-16 h-16 mr-4" />
+              <span className="text-gray-800 text-xl">My Website</span>
+            </a>
+            <div className="flex items-center justify-end">
+              <Button>
+                <Link to="/login" className="text-gray-800 text-sm mr-4">
+                  Log in
+                </Link>
+              </Button>
+              <Button>
+                <Link to="/signup" className="text-gray-800 text-sm">
+                  sign up
+                </Link>
+              </Button>
+            </div>
+          </nav>
+        </div>
+      </AppBar>
     </>
   );
 }
